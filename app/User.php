@@ -2,14 +2,24 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Post;
 use Illuminate\Notifications\Notifiable;
+use Multicaret\Acquaintances\Traits\CanLike;
+use Multicaret\Acquaintances\Traits\CanVote;
+use Multicaret\Acquaintances\Traits\CanFollow;
+use Multicaret\Acquaintances\Traits\CanFavorite;
+use Multicaret\Acquaintances\Traits\CanSubscribe;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable ,CanFollow, CanLike, CanFavorite, CanSubscribe, CanVote;
 
+
+    public function posts()
+    {
+      return $this->hasMany(Post::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

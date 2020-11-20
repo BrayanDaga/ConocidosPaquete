@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('posts', 'PostController');
+
+    Route::get('posts/{post}/like', 'PostController@like')->name('posts.like');
+    Route::get('posts/{post}/unlike', 'PostController@unlike')->name('posts.unlike');
+
+});
