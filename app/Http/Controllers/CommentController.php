@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use App\User;
+use App\Comment;
 use Illuminate\Http\Request;
-use App\Multicaret\Acquaintances\Traits\CanLike;
 use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
     public function __construct()
     {
@@ -22,29 +21,26 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all();
-        $user = $this->currentUser();
-        return view('posts.index', compact('posts','user'));
+        $posts = Comment::all();
+        return view('posts.index', compact('posts'));
     }
 
-    public function show(Post $post)
+    public function show(Comment $comment)
     {
-        // return view('posts.show', compact('post'));
+        return view('posts.show', compact('comment'));
     }
 
-    public function like(Post $post)
+    public function like(Comment $comment)
     {
         $user = $this->currentUser();
-        $user->like($post);
+        $user->like($comment);
         return back();
     }
 
-    public function unlike(Post $post)
+    public function unlike(Comment $comment)
     {
         $user = $this->currentUser();
-        $user->unlike($post);
+        $user->unlike($comment);
         return back();
     }
-
-
 }

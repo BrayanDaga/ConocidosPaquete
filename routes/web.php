@@ -27,4 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('posts/{post}/like', 'PostController@like')->name('posts.like');
     Route::get('posts/{post}/unlike', 'PostController@unlike')->name('posts.unlike');
 
+    Route::get('comments/{comment}/like', 'CommentController@like')->name('comments.like');
+    Route::get('comments/{comment}/unlike', 'CommentController@unlike')->name('comments.unlike');
+
 });
