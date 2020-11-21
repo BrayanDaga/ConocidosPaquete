@@ -36,6 +36,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('users.index') }}">Users</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.follows') }}">Follows</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
