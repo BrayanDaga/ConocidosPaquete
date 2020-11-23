@@ -13,7 +13,7 @@ use Multicaret\Acquaintances\Traits\CanBeFavorited;
 
 class Post extends Model
 {
-    use CanBeLiked;
+    use CanBeLiked, CanBeFavorited, CanBeVoted, CanBeRated;
 
     public function user()
     {

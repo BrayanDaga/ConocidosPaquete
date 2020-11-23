@@ -9,7 +9,7 @@
 
                         @foreach ($posts as $post)
 
-                        @include('posts.show')
+                        @include('posts.post')
 
                         @endforeach
                     </div>

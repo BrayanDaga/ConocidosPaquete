@@ -29,7 +29,8 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        // return view('posts.show', compact('post'));
+        $user = $this->currentUser();
+        return view('posts.show', compact('post','user'));
     }
 
     public function like(Post $post)
@@ -43,6 +44,21 @@ class PostController extends Controller
     {
         $user = $this->currentUser();
         $user->unlike($post);
+        return back();
+    }
+
+    public function upVote(Post $post)
+    {
+        $user = $this->currentUser();
+        $user->upvote($post);
+        return back();
+    }
+
+    public function downVote(Post $post)
+    {
+        $user = $this->currentUser();
+        // $user->cancelVote($post);
+        $user->downvote($post);
         return back();
     }
 

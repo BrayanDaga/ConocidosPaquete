@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h2>Posts</h2>
+    <h2>Users</h2>
         <div class="row justify-content-center">
             <div class="col-md-10">
 
@@ -12,13 +12,12 @@
                         <div class="card m-3">
                             <div class="card-body">
                                 {{ $user->name }}
-                            @if (auth()->user() == $user)
-                                @elseif (!$cUser->isFollowing($user) )
-                                <a href="{{ route('user.follow', $user ) }}" class="btn btn-secondary btn-sm float-right"> Seguir </a>
-                                @else
-                                <a href="{{ route('user.unfollow', $user ) }}" class="btn btn-primary btn-sm float-right"> Siguiendo </a>
+                            @if ( auth()->user() != $user)
+                                @include('users.buttonFollow')
+                                @include('users.buttonFriend')
                             @endif
-                            </div>
+                        </div>
+
                         </div>
 
                         @endforeach

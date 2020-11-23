@@ -12,6 +12,6 @@ $factory->define(Comment::class, function (Faker $faker) {
         'post_id' => Post::all()->random()->id,
         'user_id' => User::all()->random()->id,
         'content' => $faker->sentence(),
-        'parent' => $faker->randomElement([null, Comment::all()->random()->id ])
+        'parent' => $faker->randomElement([ Comment::all()->random()->id ])
     ];
 });

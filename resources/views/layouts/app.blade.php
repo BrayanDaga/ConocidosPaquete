@@ -42,6 +42,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('user.follows') }}">Follows</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('user.friends') }}">Friends</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

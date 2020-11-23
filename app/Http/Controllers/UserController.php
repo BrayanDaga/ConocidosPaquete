@@ -56,5 +56,54 @@ class UserController extends Controller
         return view('users.follows',compact('cUser','followings','followers'));
     }
 
+    public function befriend(User $user)
+    {
+        $cUser = $this->currentUser();
+        if($cUser == $user){
+            return back();
+        }
+        $cUser->befriend($user);
+        return back();
+    }
+
+    public function unFriend(User $user)
+    {
+        $cUser = $this->currentUser();
+        if($cUser == $user){
+            return back();
+        }
+        $cUser->unfriend($user);
+        return back();
+    }
+
+
+    public function friends()
+    {
+        $cUser = $this->currentUser();
+        $friends = $cUser->getAcceptedFriendships();
+        $pendings = $cUser->getPendingFriendships();
+        $requests = $cUser->getFriendRequests();
+        return view('users.friends',compact('cUser','friends','pendings','requests'));
+    }
+
+    public function acceptFriend(User $user)
+    {
+        $cUser = $this->currentUser();
+        if($cUser == $user){
+            return back();
+        }
+        $cUser->acceptFriendRequest($user);
+        return back();
+    }
+
+    public function denyFriend(User $user)
+    {
+        $cUser = $this->currentUser();
+        if($cUser == $user){
+            return back();
+        }
+        $cUser->denyFriendRequest($user);
+        return back();
+    }
 
 }

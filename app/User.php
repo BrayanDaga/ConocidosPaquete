@@ -7,14 +7,15 @@ use Illuminate\Notifications\Notifiable;
 use Multicaret\Acquaintances\Traits\CanLike;
 use Multicaret\Acquaintances\Traits\CanVote;
 use Multicaret\Acquaintances\Traits\CanFollow;
-use Multicaret\Acquaintances\Traits\CanBeFollowed;
+use Multicaret\Acquaintances\Traits\Friendable;
 use Multicaret\Acquaintances\Traits\CanFavorite;
 use Multicaret\Acquaintances\Traits\CanSubscribe;
+use Multicaret\Acquaintances\Traits\CanBeFollowed;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable ,CanFollow, CanLike , CanBeFollowed, CanFavorite, CanSubscribe, CanVote;
+    use Notifiable ,CanFollow, CanLike , CanBeFollowed, CanFavorite, CanSubscribe, CanVote, Friendable;
 
 
     public function posts()

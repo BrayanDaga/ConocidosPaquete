@@ -21,7 +21,7 @@ class CommentController extends Controller
 
     public function index()
     {
-        $posts = Comment::all();
+        $posts = Comment::whereNull('parent')->get();
         return view('posts.index', compact('posts'));
     }
 

@@ -1,3 +1,8 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+
 <div class="card m-3">
     <div class="card-header">{{ $post->title }}</div>
 
@@ -13,14 +18,7 @@
             <a href="{{ route('posts.unlike', $post) }}" class="btn btn-primary btn-sm">({{ $post->likersCountReadable }}) Te gusta</a>
         @endif
 
-
-
-        {{-- @if (! $post->disliked)
-            <a href="{{ route('posts.dislike', $post) }}" class="btn btn-secondary btn-sm">({{ $post->dislikesCount }}) No me gusta</a>
-        @else --}}
-            {{-- <a href="{{ route('posts.unlike', $post) }}" class="btn btn-secondary btn-sm"> No me gusta</a> --}}
-        {{-- @endif --}}
-
+        <p class="card-text mt-5">Comments</p>
         @foreach ($post->comments as $comment)
         @include('posts.comments')
 
@@ -29,3 +27,5 @@
     </div>
 
 </div>
+</div>
+@endsection
