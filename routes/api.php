@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::apiResource('users','Api\UserController');
+Route::apiResource('posts','Api\PostController');
+
+Route::post('users/{user}/posts/{post}/like', 'Api\UserPostController@like');
+Route::post('users/{user}/posts/{post}/unlike', 'Api\UserPostController@unlike');
+
+Route::post('users/{user}/posts/{post}/upvote', 'Api\UserPostController@upVote');
+Route::post('users/{user}/posts/{post}/downvote', 'Api\UserPostController@downVote');

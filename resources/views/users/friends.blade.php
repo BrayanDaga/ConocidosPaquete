@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h2>FOLLOWS</h2>
+    <h2>FRIENDS</h2>
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
