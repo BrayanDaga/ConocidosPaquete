@@ -76,7 +76,6 @@ class UserController extends Controller
         return back();
     }
 
-
     public function friends()
     {
         $cUser = $this->currentUser();

@@ -19,7 +19,10 @@ class UserCollection extends ResourceCollection
     {
         return [
             'data' => $this->collection,
-            'links' => 'metadata',
+            'links' => [
+                'rel' => 'self',
+                'href' => 'link',
+            ],
         ];
     }
 }

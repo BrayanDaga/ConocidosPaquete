@@ -20,8 +20,6 @@ class UserController extends Controller
         $users =  new UserCollection(User::all());
         return $users;
     }
-
-
     /**
      * Display the specified resource.
      *
@@ -33,7 +31,6 @@ class UserController extends Controller
         $user = new UserResource($user);
         return $user;
     }
-
 
     public function follow(User $user, User $user1)
     {
@@ -51,7 +48,6 @@ class UserController extends Controller
 
     }
 
-
     public function befriend(User $user, User $recipient)
     {
         $user->befriend($recipient);
@@ -62,8 +58,7 @@ class UserController extends Controller
     public function unFriend(User $user, User $friend)
     {
         $user->unfriend($friend);
-        return $user->getFriendship($friend);
-
+        return response()->json(['data'=>"Tú y {$friend->name} ya no son amigos"]);
     }
 
     public function acceptFriend(User $user, User $sender)
