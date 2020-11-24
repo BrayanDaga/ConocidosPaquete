@@ -21,16 +21,6 @@ class UserController extends Controller
         return $users;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -44,45 +34,21 @@ class UserController extends Controller
         return $user;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
+    public function follow(User $user, User $user1)
     {
-        //
-    }
-
-
-    public function follow(User $user)
-    {
-        $cUser = $this->currentUser();
-        if($cUser == $user){
-            return back();
+        if($user == $user1){
+            return response()->json(['error'=>'No puedes seguirte a ti mismo']);
         }
-        $cUser->follow($user);
-        return back();
+        $user->follow($user1);
+        return response()->json(['data'=>'empezaste de seguir a '. $user1->name]);
     }
 
-    public function unfollow(User $user)
+    public function unfollow(User $user, User $user1)
     {
-        $cUser = $this->currentUser();
-        $cUser->unfollow($user);
-        return back();
+        $user->unfollow($user1);
+        return response()->json(['data'=>'dejaste de seguir a '. $user1->name]);
+
     }
 
 
@@ -112,11 +78,15 @@ class UserController extends Controller
         return $user->getFriendship($sender);
     }
 
-    public function follows(User $user)
+    public function followings(User $user)
     {
-        // return response()->json('follows');
+        return $user->followings()->get();
+    }
 
-        return json_encode('follows');
+    public function followers(User $user)
+    {
+
+        return $user->followers()->get();
     }
 
     public function friends(User $user)

@@ -29,8 +29,8 @@ Route::match(['put', 'patch'],'users/{user}/posts/{post}/unlike', 'Api\UserPostC
 Route::match(['put', 'patch'],'users/{user}/posts/{post}/upvote', 'Api\UserPostController@upVote');
 Route::match(['put', 'patch'],'users/{user}/posts/{post}/downvote', 'Api\UserPostController@downVote');
 
-Route::match(['put', 'patch'],'users/{user}/follow/{}', 'Api\UserController@follow');
-Route::match(['put', 'patch'],'users/{user}/unfollow/{}', 'Api\UserController@unfollow');
+Route::match(['put', 'patch'],'users/{user}/follow/{user1}', 'Api\UserController@follow');
+Route::match(['put', 'patch'],'users/{user}/unfollow/{user1}', 'Api\UserController@unfollow');
 
 Route::match(['put', 'patch'],'users/{user}/befriend/{recipient}', 'Api\UserController@beFriend');
 Route::match(['put', 'patch'],'users/{user}/unfriend/{friend}', 'Api\UserController@unFriend');
@@ -38,5 +38,6 @@ Route::match(['put', 'patch'],'users/{user}/unfriend/{friend}', 'Api\UserControl
 Route::match(['put', 'patch'],'users/{user}/acceptfriend/{sender}', 'Api\UserController@acceptFriend');
 Route::match(['put', 'patch'],'users/{user}/denyfriend/{sender}', 'Api\UserController@denyFriend');
 
-Route::get('users/{user}/follows', 'Api\UserController@follows');
+Route::get('users/{user}/followings', 'Api\UserController@followings');
+Route::get('users/{user}/followers', 'Api\UserController@followers');
 Route::get('users/{user}/friends', 'Api\UserController@friends');
