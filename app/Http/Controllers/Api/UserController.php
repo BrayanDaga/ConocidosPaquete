@@ -66,4 +66,71 @@ class UserController extends Controller
     {
         //
     }
+
+
+    public function follow(User $user)
+    {
+        $cUser = $this->currentUser();
+        if($cUser == $user){
+            return back();
+        }
+        $cUser->follow($user);
+        return back();
+    }
+
+    public function unfollow(User $user)
+    {
+        $cUser = $this->currentUser();
+        $cUser->unfollow($user);
+        return back();
+    }
+
+
+    public function befriend(User $user, User $recipient)
+    {
+        $user->befriend($recipient);
+        return $user->getFriendship($recipient);
+        // ->get(['status','id','recipient_id'])
+    }
+
+    public function unFriend(User $user, User $friend)
+    {
+        $user->unfriend($friend);
+        return $user->getFriendship($friend);
+
+    }
+
+    public function acceptFriend(User $user, User $sender)
+    {
+        $user->acceptFriendRequest($sender);
+        return $user->getFriendship($sender);
+    }
+
+    public function denyFriend(User $user, User $sender)
+    {
+        $user->denyFriendRequest($sender);
+        return $user->getFriendship($sender);
+    }
+
+    public function follows(User $user)
+    {
+        // return response()->json('follows');
+
+        return json_encode('follows');
+    }
+
+    public function friends(User $user)
+    {
+        $friends =  $user->getAcceptedFriendships();
+        $users = [];
+        foreach ($friends as $friend) {
+            if($friend->sender->id != $user->id){
+                $users[] = User::find($friend->sender->id);
+            }
+            elseif($friend->recipient->id != $user->id){
+                $users[] = User::find($friend->recipient->id);
+            }
+        }
+        return   new UserCollection($users);
+    }
 }

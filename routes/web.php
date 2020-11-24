@@ -37,10 +37,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('user/{user}/follow', 'UserController@follow')->name('user.follow');
     Route::get('user/{user}/unfollow', 'UserController@unfollow')->name('user.unfollow');
+
     Route::get('user/follows', 'UserController@follows')->name('user.follows');
 
     Route::get('user/{user}/befriend', 'UserController@beFriend')->name('user.befriend');
     Route::get('user/{user}/unfriend', 'UserController@unFriend')->name('user.unfriend');
+
     Route::get('user/friends', 'UserController@friends')->name('user.friends');
     Route::get('user/{user}/acceptfriend', 'UserController@acceptFriend')->name('user.acceptfriend');
     Route::get('user/{user}/denyfriend', 'UserController@denyFriend')->name('user.denyfriend');
